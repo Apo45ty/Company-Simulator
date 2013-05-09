@@ -1,0 +1,130 @@
+<html>
+<head>
+</head>
+<body>
+<style>
+
+div.makeProduct{
+}
+
+div.dedicateMoney{
+}
+
+div.bankLoan{
+}
+ 
+div.dedicateTime{
+}
+
+div.elevatorsPitchCompetition{
+}
+
+div.gatherInvestorForDebt{
+}
+
+div.gatherInvestorForEquity{
+}
+
+div.kickstarter{
+}
+
+div.sBIR{
+}
+</style>
+<script src="js/JQ.js"></script>
+
+<div  style="position:fixed;top:2%;right:0%">
+Hours remaining until a year is fufilled:
+</div>
+<div id="count" style="position:fixed;top:10%;right:0%">
+Count
+</div>
+<h1>Fill in the form and then submit</h1>
+<p>Select your form of financing for a year in a startup company with only </p>
+<p>Dont hack this app please! Time is mesure din hours always!</p>
+
+<form id="form" action="http://localhost:2000" method="get">
+<input type="submit" value="Go!" />
+
+</form>
+
+
+<div id="add">
+<select id="types" >
+ <option value="BankLoan">BankLoan</option>
+ <option value="DedicateMoney">DedicateMoney</option>
+ <option value="DedicateTime">DedicateTime</option>
+ <option value="ElevatorsPitchCompetition">ElevatorsPitchCompetition</option>
+ <option value="GatherInvestorForDebt">GatherInvestorForDebt</option>
+ <option value="GatherInvestorForEquity">GatherInvestorForEquity</option>
+ <option value="Kickstarter">Kickstarter</option>
+ <option value="MakeProduct">MakeProduct</option>
+ <option value="SBIR">SBIR</option>
+</select>
+
+<input id="addDiv" type="button" value="Select" />
+
+</div>
+
+<script>
+var count=0;
+
+$(function(){
+	$('#addDiv').click(function(e){
+		e.preventDefault(); // cancel navigation
+		var form = getForm($('#types').val());		
+		$('#form').append(form);
+	});
+	
+	
+	setInterval(function(){
+			var count2=365*8;//365 days working 8 hours
+				//alert($('#MakeProductTotalTimeProfit').size());
+				$('.makeProduct').each(
+						function(){
+						try{
+						  
+						   count2-=parseFloat($(this).val());
+						}catch(e)
+						{
+						}
+				});
+			
+			$('#count').html(count2);
+	},3000);
+}); 
+
+function getForm(type){
+	switch(type){
+		case 'BankLoan':
+			return '<div> Write down number for hours to be worked in BankLoan: Amount to me lended <input type="text" name="BankLoanTime?' + (count) +'"> Time: <input class="makeProduct" type="text" name="BankLoanAmount?' + (count++) +'"></div><br /><hr />'
+			break;
+		case 'DedicateMoney':
+			return '<div> Write down the hour that the founder will spend while paying money <input class="makeProduct" type="text" name="DedicateMoneyTime?' + (count) +'"> Amount of money to be dedicated<input type="text" name="DedicateMoney?' + (count++) +'"></div><br /><hr />'
+			break;
+		case 'DedicateTime':
+			return '<div> Write down number of hours that the founder will dedicate:  <input type="text" class="makeProduct" name="DedicateTime' + (count++) +'"></div><br /><hr />'
+			break;
+		case 'ElevatorsPitchCompetition':
+			return '<div> Write down number for hours dedicated to ElevatorsPitchCompetition: <input class="makeProduct" type="text" name="ElevatorsPitchCompetition' + (count++) +'"></div><br /><hr />'
+			break;		
+		case 'GatherInvestorForDebt':
+			return '<div> Write down number of hours preparing for a presentation to Investor For Debt: <input type="text" class="makeProduct" name="GatherInvestorForDebt' + (count++) +'"></div><br /><hr />'
+			break;
+		case 'GatherInvestorForEquity':
+			return '<div> Write down number for hours dedicated to a presentation to investor actors. GatherInvestorForEquity: <input class="makeProduct" type="text" name="GatherInvestorForEquity' + (count++) +'"></div><br /><hr />'
+			break;
+		case 'Kickstarter':
+			return '<div > Write down number of hours fo preparation for Kickstarter: pledge <input type="text" name="KickstarterT?' + (count) +'"> Time dedicated <input type="text" class="makeProduct" name="Kickstarter?' + (count++) +'"></div><br /><hr />'
+			break;
+		case 'MakeProduct':
+			return '<div > Write down the Research and Dedvelopment time: <input type="text" name="MakeProductRandDProfit?'+ (count) +'" /> Write down the total time spend <input type="text" class="makeProduct" name="MakeProductTotalTimeProfit?'+ (count++) +'"></div><br /><hr />'
+			break;
+		case 'SBIR':
+			return '<div> Write down number of hours preparing for the SBIR: <input class="makeProduct" type="text" name="SBIR' + (count++) +'"></div><br /><hr />'
+			break;
+	}
+}
+</script>
+</body>
+</html>
